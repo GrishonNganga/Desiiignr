@@ -1,0 +1,31 @@
+{% load static %}
+{% block styles %}
+<!-- Styles stuff -->
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+{% endblock %}
+
+<div class="container-fluid nav">
+    <div class="nav-img">
+        <img src="{% static 'images/margatsni.png' %}" alt="Logo">
+    </div>
+    <div class="nav-right">
+        <div class="row">
+            <div class="col-1 col-sm-0">
+                <div class="home">
+                    <span class="material-icons">home</span>
+                </div>
+            </div>
+            <div class="col-1 col-sm-0">
+                <div class="heart">
+                    <span class="material-icons">favorite_border</span>
+                </div>
+            </div>
+            <div class="col-1 col-sm-0">
+                <div class="profile">
+                    <span class="material-icons">account_circle</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

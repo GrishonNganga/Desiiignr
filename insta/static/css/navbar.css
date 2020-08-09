@@ -20,6 +20,7 @@
 .nav-right .row{
     display: flex !important;
     justify-content: flex-end !important;
+    width: 100%;
     
 }
 .nav-right{
@@ -30,10 +31,9 @@
     z-index: 1000;
     
 }
-.nav-right .row{
-    width: 100%;
+.up-tad{
+    margin-top: -5px;
 }
-
 @media screen and (min-width: 600px){
     .nav-img img{
         width: 125px;

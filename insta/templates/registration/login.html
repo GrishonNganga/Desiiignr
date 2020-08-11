@@ -1,0 +1,64 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="cover-div">
+  <div class="image">
+    <img src="{% static 'images/cute_signup.jpg' %}" alt="">
+  </div>
+  <div class="cover">
+        <div class="logo">
+        <img src="{% static 'images/margatsni-bl.png' %}" alt="">
+        <form>
+            <div class="form-group">
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+            </div>
+            <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+            </div>
+            <button type="submit" class="btn btn-primary signup">Log In</button>
+            <div class="or-div">
+            <div class="line"></div><span class="or">&nbsp;  OR</span> <div class="line right"></div>
+            </div>
+            
+            <div class="card signup-box">
+            <p> Don't have an account?<span class="text-blue">&nbsp; Sign up</span></p>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<div class="cover-div-sm">
+    <div class="cover">
+        <div class="logo">
+          <img src="{% static 'images/margatsni-bl.png' %}" alt="">
+          <form>
+            <div class="form-group">
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+            </div>
+            <button type="submit" class="btn btn-primary signup">Log In</button>
+            <div class="or-div">
+              <div class="line"></div><span class="or">&nbsp;  OR</span> <div class="line right"></div>
+            </div>
+            
+            <div class="card signup-box">
+              <p> Don't have an account?<span class="text-blue">&nbsp; Sign up</span></p>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,7 +1,7 @@
-from django.urls import path, include
+from django.conf.urls import url
 from insta.views import index
 
 urlpatterns = [
-    path('', index, name='index'),
+    url('', index, name='index'),
     # path('home', home, name = 'other')
 ]

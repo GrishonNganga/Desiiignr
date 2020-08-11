@@ -1,0 +1,121 @@
+html{
+    height: 100%;
+}
+body{
+    margin: 0%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom right, #9a78ff, #ffc56e);
+}
+.cover-div{
+    display: none;
+}
+.cover-div-sm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.cover{
+    display: flex;
+    width: 90%;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 2px 2px 20px #ffc56e;
+    top: 40%;
+}
+.logo{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    
+}
+.logo img{
+    width: 75%;
+    margin-top: 20%;
+    margin-bottom: 10%;
+}
+.signup{
+    width: 100%;
+    margin-bottom: 15%;
+}
+.line{
+    float: left;
+    margin-top: 6%;
+    width: 41%;
+    border-top: 1.5px solid lightgray;
+}
+
+.signup-box{
+    font-size: 14px;
+    padding: 10px 10px 0px 10px;
+    border-radius: 0em;
+    margin-bottom: 10%;
+}
+.line{
+    float: left;
+    margin-top: 6%;
+    width: 39%;
+    border-top: 1.5px solid lightgray;
+}
+.right{
+    float: right;
+}
+.or{
+    margin-top: -25px;
+    text-align: center;
+}
+.or-div{
+    margin-bottom: 10%;
+}
+.text-blue{
+    color: #007BFF;
+    font-weight: bold;
+}
+@media screen and (min-width: 600px){
+
+    .cover-div-sm{
+        display: none;
+    }
+    .cover-div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    .cover{
+        display: flex;
+        width: 450px;
+        height: 500px;        
+        background-color: white;
+        z-index: 1000;
+        box-shadow: 2px 2px 20px #ffc56e;
+        align-self: center;
+        
+    }
+    .image img{
+        width: 350px;
+        height: 450px;
+    }
+    .logo{
+        margin-left: 50%;
+        transform: translateX(-50%);
+        
+    }
+    .logo img{
+        width: 200px;
+        margin-bottom: 17%;
+        margin-top: 17%;
+        
+    }
+    .signup-box{
+        margin-bottom: 0px;
+    }
+    .signup{
+        width: 100%;
+        margin-bottom: 15%;
+    }
+    .line{
+        width: 41%;
+        
+    } 
+}

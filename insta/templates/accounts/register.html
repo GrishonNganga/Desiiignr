@@ -1,0 +1,58 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/registration/register.css' %}">
+{% endblock %}
+
+<div class="cover-div">
+  <div class="image">
+    <img src="{% static 'images/cute_signup.jpg' %}" alt="">
+  </div>
+  <div class="cover">
+        <div class="logo">
+        <img src="{% static 'images/margatsni-bl.png' %}" alt="">
+        {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+        {% endif %}
+        <form  action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {{ register_form.email }}
+            <button type="submit" class="btn btn-primary signup">Sign Up</button>
+            <div class="or-div">
+            <div class="line"></div><span class="or">&nbsp;  OR</span> <div class="line right"></div>
+            </div>
+            
+            <div class="card signup-box">
+            <p> Have an account?<span class="text-blue">&nbsp; <a href="/accounts/login"> Log in</a></span></p>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<div class="cover-div-sm">
+    <div class="cover">
+        <div class="logo">
+          <img src="{% static 'images/margatsni-bl.png' %}" alt="">
+          {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+        {% endif %}
+        <form  action="/accounts/register/" method="post">
+            {% csrf_token %}
+            {{ register_form }}
+            <div class="or-div">
+              <div class="line"></div><span class="or">&nbsp;  OR</span> <div class="line right"></div>
+            </div>
+            
+            <div class="card signup-box">
+              <p> Have an account?<span class="text-blue">&nbsp; <a href="/accounts/register"> Log in</a></span></p>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

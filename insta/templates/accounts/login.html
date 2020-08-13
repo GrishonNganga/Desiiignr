@@ -1,4 +1,4 @@
-{% extends 'registration/base.html' %}
+{% extends 'accounts/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         {% if form.errors %}
         <p> Some Information Might be Incorrect </p>
         {% endif %}
-        <form  action="/accounts/register/" method="post">
+        <form  action="/accounts/login/" method="post">
             {% csrf_token %}
             <div class="form-group">
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" autocomplete="email">

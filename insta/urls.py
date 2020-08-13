@@ -3,5 +3,4 @@ from insta.views import index
 
 urlpatterns = [
     url('', index, name='index'),
-    # path('home', home, name = 'other')
 ]

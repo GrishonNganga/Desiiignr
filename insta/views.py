@@ -1,21 +1,75 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout, authenticate, get_user_model
 
-from .forms import RegisterUserForm
+User = get_user_model()
 
-def register(request):
+from .forms import RegisterUserForm, LoginUserForm
+
+def registerPage(request):
     form = RegisterUserForm()
 
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('/')
 
     return render(request, 'accounts/register.html', {'register_form': form})
 
+def loginPage(request):
+    form = LoginUserForm()
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        email1 = request.POST.get('email1')
+        password1 = request.POST.get('password1')
+        next = request.POST.get('next')
 
-@login_required
+        if password != None and email != None:
+            user_from_email = User.objects.filter(email = email)
+            if user_from_email.exists():
+                user_from_obj = list(user_from_email)[0]
+                user_email = user_from_obj.email
+                print(user_email)
+                user = authenticate(request, username = user_from_obj.username, password = password)
+
+        else:
+            user_from_email = User.objects.filter(email = email)
+            if user_from_email.exists():
+                user_from_obj = list(user_from_email)[0]
+                user_email = user_from_obj.email
+                print(user_email)
+                user = authenticate(request, username = user_from_obj.username, password = password)
+        if user:
+            login(request, user_from_obj)
+            print('Login Success')
+
+        
+            print('Next is')
+            print(next)
+            if next:
+                return redirect(next)
+            else:
+                return HttpResponseRedirect('/')
+        else:
+            return render(request, 'accounts/login.html', {'login_form': form, 'error': 'Error! Username or password is incorrect'})
+
+        
+        return redirect('/')
+
+
+    return render(request, 'accounts/login.html', {'login_form': form})
+
+@login_required(login_url='/login')
 def index(request):
     return render(request, 'index.html')
 
 
+
+@login_required(login_url='/login')
+def profile(request):
+    if request.method == 'POST' and request.FILES.get('profile'):
+        profile = request.FILES.get('profile')
+
+    return render(request, 'profile.html')

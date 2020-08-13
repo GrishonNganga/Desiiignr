@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-from insta.views import register
+from insta.views import registerPage, loginPage
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^register', register, name='register'),
+    url(r'^register', registerPage, name='register'),
+    url(r'^login', loginPage, name='login'),
     url('', include('insta.urls') ), 
+    url(r'^profile', include('insta.urls')),
     url('home', include('insta.urls'))
 ]

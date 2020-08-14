@@ -16,7 +16,19 @@
 
 
     <div class="screen-sm image container">
-        <div class="image">
+        <div class="row image">
+            <div class="col">
+                <div class="profile-photo">
+                    {% if post.user.profile.profile_image %}
+                    <img src="{{ post.user.profile.profile_image.url }}" alt="">
+                    {%else%}
+                    <span class="material-icons profile-icon">account_circle</span>
+                    {% endif %}
+                    {{post.user.username}}
+                </div>
+            </div>
+        </div>
+        <div class="">
             <img src="{{ post.post_image.url }}" alt="">
         </div>  
         <div class="row">
@@ -35,6 +47,75 @@
                 <textarea name="comment" id="comment" cols="5" class="form-control hidden"></textarea>
                 <button type="submit" class="btn btn-primary hidden post-btn">Post</button>
             </div>
+        </div>
+    </div>
+    <div class="screen-bg">
+        <div class="padding-space"></div>
+        <div class="center-flex">
+            <div class="post-box">
+                <div class="image-org">
+                    <img src="{{ post.post_image.url }}" alt="">
+                </div>
+                <div class="engage-section">
+                    <div class="row section-2">
+                        <div class="col">
+                            <div class="profile-photo card">
+                                {% if post.user.profile.profile_image %}
+                                <img src="{{ post.user.profile.profile_image.url }}" alt="">
+                                {%else%}
+                                <span class="material-icons profile-icon">account_circle</span>
+                                {% endif %}
+                                {{post.user.username}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comments-section-lg">
+                        <div class="profile">
+                            <div class="profile-photo up-tad">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <a href="/profile">
+                                            {% if user.profile.profile_image %}
+                                            <img src="{{ user.profile.profile_image.url }}" alt="">
+                                            {% else %}
+                                            <span class="material-icons nav-right" id="upload-image">account_circle</span>
+                                            {% endif %} 
+                                        </a>
+                                    </div>
+                                    <div class="col mt-3">
+                                        Grishon Gikima  Comment yangu ndio hii!. Vitu kuspoil
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                                
+                    <div class="bottom">
+                        <div class="row">
+                            <div class="col engage">
+                                <span class="material-icons fav fav-lg">favorite_border</span>
+                                <span class="material-icons chat message_bubble-lg">chat_bubble_outline</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Liked by Karen Ngala and others </p> 
+                            </div>
+                        </div>
+                        <div class="row comment-box-lg">
+                            <div class="col">
+                                <textarea name="comment" id="comment" cols="3" class="form-control textarea-bg" placeholder="Add a comment"></textarea>
+                                <span class="post-btn-lg text-primary">Post</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
         </div>
     </div>
 

@@ -19,6 +19,63 @@
         display: none;
     }
     .screen-bg{
+        display: block;
+    }
+    .center-flex{
         display: flex;
+        justify-content: center;
+    }
+    .post-box{
+        border: 1px solid lightgray;
+        display: flex;
+        flex-direction: row;
+}
+    .padding-space{
+        padding-top: 80px;
+        height: 2px;
+    }
+    .image-org {
+        padding-top: 0%;
+    }
+    .image-org img{
+        width: 500px;
+        height: 550px;
+    }
+    .profile-photo{
+        display: block;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+    .engage-section{
+        position: relative;
+        width: 330px;
+    }
+    .bottom{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }
+    .bottom .row{
+        width: 100%;
+    }
+    .textarea-bg{
+        border: none;
+        width: 100%;
+        background-color: transparent;
+        resize: none;
+    }
+    .textarea-bg:focus{
+        box-shadow: none;
+        background-color: transparent;
+        
+    }
+    .post-btn-lg{
+        position: absolute;
+        bottom: 20px;
+        right: -8px;
+        margin: 0%;
+        padding: 0%;
+        font-weight: bold;
     }
 }

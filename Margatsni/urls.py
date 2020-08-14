@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-from insta.views import registerPage, loginPage
+from insta.views import registerPage, loginPage, show_post
 
 urlpatterns = [
     url('admin/', admin.site.urls),
@@ -24,5 +24,5 @@ urlpatterns = [
     url('', include('insta.urls') ), 
     url(r'^profile', include('insta.urls')),
     url(r'^upload', include('insta.urls')),
-    url('home', include('insta.urls'))
+    url(r'^post/(\d)/', include('insta.urls'))
 ]

@@ -103,3 +103,11 @@ def upload_pic(request):
             return render(request, 'upload.html', {'error': 'Make sure you select an image'})
     else:
         return render(request, 'upload.html')
+
+
+
+@login_required(login_url='/login')
+def show_post(request, post_id):
+    post = Post.objects.get(id = post_id)
+    
+    return render(request, 'post.html', {'post': post})

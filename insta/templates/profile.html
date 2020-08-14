@@ -53,7 +53,7 @@
         <div class="posts">
             {% for post in posts %}
             <div class="post mr-3">
-                <a href="/">
+                <a href="post/{{ post.id }}">
                     <img src="{{ post.post_image.url }}" alt="">               
                 </a>
                 

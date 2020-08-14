@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href=" {% static 'css/post.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/index.css' %}">
+    
+    <title>Margatsni</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+
+    <div class="screen-sm image container">
+        <div class="image">
+            <img src="{{ post.post_image.url }}" alt="">
+        </div>  
+        <div class="row">
+            <div class="col engage">
+                <span class="material-icons fav">favorite_border</span>
+                <span class="material-icons chat message_bubble">chat_bubble_outline</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Liked by Karen Ngala and others 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <textarea name="comment" id="comment" cols="5" class="form-control hidden"></textarea>
+                <button type="submit" class="btn btn-primary hidden post-btn">Post</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="{% static 'js/post.js' %}"></script>
+</body>
+
+{% block scripts %}
+    
+    {% endblock %}
+</html>
+

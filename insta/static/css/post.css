@@ -1,0 +1,24 @@
+.image{
+    padding-top: 40px;
+}
+.image img{
+    width: 100%;
+}
+.hidden{
+    display: none;
+}
+.screen-sm{
+    display: block;
+}
+.screen-bg{
+    display: none;
+}
+
+@media screen and (min-width: 600px){
+    .screen-sm{
+        display: none;
+    }
+    .screen-bg{
+        display: flex;
+    }
+}

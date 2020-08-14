@@ -1,6 +1,16 @@
 .profile-img{
     font-size: 112px;
     cursor: pointer;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+.uploaded-img img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
 }
 .text-title{
     font-size: 24px;
@@ -37,4 +47,11 @@
 }
 #upload{
     visibility: hidden;
+}
+
+@media screen and (min-width: 600px){
+    .uploaded-img img{
+        width:200px;
+        height: 200px ;
+    }
 }

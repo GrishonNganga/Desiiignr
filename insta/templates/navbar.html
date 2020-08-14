@@ -34,7 +34,11 @@
                 <div class="profile">
                     <div class="profile-photo small-pic up-tad">
                         <a href="/profile">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
+                            {% if user.profile.profile_image %}
+                            <img src="{{ user.profile.profile_image.url }}" alt="">
+                            {% else %}
+                            <span class="material-icons nav-right" id="upload-image">account_circle</span>
+                            {% endif %}
                         </a>
                         
                         

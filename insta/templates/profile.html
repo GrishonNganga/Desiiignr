@@ -13,12 +13,12 @@
     <div class="container mt-3">
         <div class="row mt-5">
             <div class="col-sm-7 card">
-                <div class="row">
-                    <div class="col">
+                <div class="row uploaded-img-div">
+                    <div class="col uploaded-img">
                         <form method="post" enctype="multipart/form-data" action="/profile">
                             {% csrf_token %}
-                            {%  if profile.image.url %}
-                            <img class="material-icons profile-img" id="upload-image" src="{{ profile.image.url }}">account_circle</span>
+                            {%  if user.profile.profile_image %}
+                            <img id="upload-image" src="{{ user.profile.profile_image.url }}">
 
                             {% else %}
                             <span class="material-icons profile-img" id="upload-image">account_circle</span>
@@ -30,12 +30,12 @@
                     <div class="col">
                         <div class="row">
                             <div class="col mt-4 text-title">
-                                    Grishon Gikima
+                                    {{user.username}}
                             </div>                        
                         </div>
                         <div class="row">
                             <div class="col mt-3">
-                                grishonnganga01@gmail.com
+                                {{user.email}}
                             </div>
                         </div>
                         <div class="row">

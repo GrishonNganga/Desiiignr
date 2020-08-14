@@ -19,12 +19,15 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-    instance.post.save()
-
+    
 
 class Post(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_image = models.ImageField(upload_to = 'posts/')
     post_description = models.CharField(max_length=200)
     upload_date = models.DateField(auto_now_add=True)
-    
+
+   
+    @classmethod
+    def get_all_posts(cls):
+        return Post.objects.all()

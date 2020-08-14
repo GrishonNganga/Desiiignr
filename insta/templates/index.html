@@ -14,12 +14,17 @@
 <div class="container index">
     <div class="row posts">
         <div class="col-12 col-sm-7 posts-div">
+            {% for post in posts %}
             <div class=" post card">
                 <div class="row">
                     <div class="col">
                         <div class="profile-photo">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
-                            {{user.username}}
+                            {% if post.user.profile.profile_image %}
+                            <img src="{{ post.user.profile.profile_image.url }}" alt="">
+                            {%else%}
+                            <span class="material-icons profile-icon">account_circle</span>
+                            {% endif %}
+                            {{post.user.username}}
                         </div>
                     </div>
                     
@@ -27,7 +32,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="post-img">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
+                            {% if post.user.profile.profile_image %}
+                            <img src="{{ post.post_image.url }}" alt="">
+                            {% endif %}
+                            {{post.post_description}}
+                            
                         </div>
                     </div>
                 </div>
@@ -39,63 +48,18 @@
                 </div>
                 
             </div>
+            {% endfor %}
     
-            <div class="post card">
-                <div class="row">
-                    <div class="col">
-                        <div class="profile-photo">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
-                            Grishon Nganga
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="post-img">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col engage">
-                        <span class="material-icons fav">favorite_border</span>
-                        <span class="material-icons chat">chat_bubble_outline</span>
-                    </div>
-                </div>
-            </div>
-            <div class="post card">
-                <div class="row">
-                    <div class="col">
-                        <div class="profile-photo">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
-                            Grishon Nganga
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="post-img">
-                            <img src="{% static 'images/twitter.png' %}" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col engage">
-                        <span class="material-icons fav">favorite_border</span>
-                        <span class="material-icons chat">chat_bubble_outline</span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
         <div class="col-12 col-sm-5 side-two">
             <div class="row side">
                 <div class="col">
                     <div class="profile-photo side-profile">
-                        <img src="{% static 'images/twitter.png' %}" alt="">
-                        Grishon Nganga
+                        {% if user.profile.profile_image %}
+                            <img src="{{ user.profile.profile_image.url }}" alt="">
+                            {%else%}
+                            <span class="material-icons profile-icon">account_circle</span>
+                            {% endif %}
+                        {{ user.username }}
                     </div>
                 </div>
             </div>

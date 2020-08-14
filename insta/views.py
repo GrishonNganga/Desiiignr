@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model
 
-from .models import Profile
+from .models import Profile, Post
 User = get_user_model()
 
 from .forms import RegisterUserForm, LoginUserForm
@@ -65,7 +65,8 @@ def loginPage(request):
 
 @login_required(login_url='/login')
 def index(request):
-    return render(request, 'index.html')
+    posts = Post.get_all_posts()
+    return render(request, 'index.html', {'posts': posts})
 
 
 
@@ -86,9 +87,18 @@ def profile(request):
 
 @login_required(login_url='/login')
 def upload_pic(request):
+    if request.method == 'POST':
+        if request.FILES.get('upload'):
+            post_image = request.FILES.get('upload')
+            post_description = request.POST.get('description')
 
-    if request.method == 'POST' and request.FILES.get('upload') and request.POST.get('description'):
-        print('We good')
+            user = request.user
+            post = Post(user = user, post_description = post_description, post_image = post_image)
+            post.save()
+            user.post = post
+            user.save()
+            return redirect('/')
+        else:
+            return render(request, 'upload.html', {'error': 'Make sure you select an image'})
     else:
-        print('Make sure you have filled all fields.')
-    return render(request, 'upload.html')
+        return render(request, 'upload.html')

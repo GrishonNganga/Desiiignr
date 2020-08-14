@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import os
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from .models import Post
+from .models import Post, Follower
 
 class Test_Profile(TestCase):
     def setUp(self):
@@ -65,9 +65,20 @@ class TestPost(TestCase):
         
         posts = Post.get_posts_for_user(id)
 
-        print(posts)
-
     def tearDown(self):
         directory_posts = os.getcwd() + '\media\posts'
         os.remove(directory_posts + '\\' + self.image_post.name)
+
+
+class TestFollower(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username = 'kishy', email = 'kishy.gikish@gmail.com', password='123@Iiht')
+        self.user2 = User.objects.create(username = 'Grish', email = 'grish@gmail.com', password='123@Iiht')
+        
+            
+    def test_create_follower(self):
+        self.follower = Follower(username= self.user2.username)
+        self.follower.save()
+        self.follower.user.add(self.user)
+        self.assertEqual(len(Follower.objects.all()), 1)
 

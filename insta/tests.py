@@ -1,9 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+import os
 
-import mock
-from django.core.files import File
-
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class Test_Profile(TestCase):
     def setUp(self):
@@ -13,14 +12,30 @@ class Test_Profile(TestCase):
         users = list(User.objects.all())
 
         self.assertEqual(len(users), 1)
-        self.assertEqual(users[0].id, 2)
+        self.assertEqual(users[0].id, 3)
         self.assertEqual(users[0].username, 'kishy')
         self.assertEqual(users[0].email, 'kishy.gikish@gmail.com')
 
     def test_profile_create(self):
-        file_mock = mock.MagicMock(spec=File, name='FileMock')
-        self.user.profile_image = file_mock
+        self.image = SimpleUploadedFile("file.jpg", b"file_content", content_type="image/jpg")
+        self.user.profile.profile_image = self.image
+        self.user.save()
 
-        users = list(User.objects.all())
+        self.assertNotEqual(self.user.profile.profile_image, None )
+        self.assertEqual(self.user.profile.profile_image.name, 'profiles/file.jpg')
+        directory = os.getcwd() + '\media\profiles'
+        
+        os.remove(directory + '\\' + self.image.name)
 
-        self.assertNotEqual(users[0].profile.profile_image, None)
+    def test_post_create(self):
+        self.image = SimpleUploadedFile("photo.jpg", b"file_content", content_type="image/jpg")
+        self.user.post.post_image = self.image
+        self.user.post.post_description = 'Oluwa Burna'
+        self.user.save()
+
+        self.assertNotEqual(self.user.post.post_image, None )
+        self.assertEqual(self.user.post.post_image.name, 'posts/photo.jpg')
+        self.assertEqual(self.user.post.post_description, 'Oluwa Burna')
+        directory = os.getcwd() + '\media\posts'
+        
+        os.remove(directory + '\\' + self.image.name)

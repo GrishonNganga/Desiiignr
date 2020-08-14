@@ -81,3 +81,14 @@ def profile(request):
 
     print(request.user.profile.profile_image)
     return render(request, 'profile.html')
+
+
+
+@login_required(login_url='/login')
+def upload_pic(request):
+
+    if request.method == 'POST' and request.FILES.get('upload') and request.POST.get('description'):
+        print('We good')
+    else:
+        print('Make sure you have filled all fields.')
+    return render(request, 'upload.html')

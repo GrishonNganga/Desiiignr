@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^login', loginPage, name='login'),
     url('', include('insta.urls') ), 
     url(r'^profile', include('insta.urls')),
+    url(r'^upload', include('insta.urls')),
     url('home', include('insta.urls'))
 ]

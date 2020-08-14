@@ -60,6 +60,13 @@ class TestPost(TestCase):
         self.assertEqual(len(posts), 2)
         
 
+    def test_get_posts_for_user(self):
+        id = self.user.id
+        
+        posts = Post.get_posts_for_user(id)
+
+        print(posts)
+
     def tearDown(self):
         directory_posts = os.getcwd() + '\media\posts'
         os.remove(directory_posts + '\\' + self.image_post.name)

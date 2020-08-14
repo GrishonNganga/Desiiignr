@@ -78,10 +78,11 @@ def profile(request):
         user.profile.profile_image = profile_image
 
         user.save()
-        print(profile_image)
 
-    print(request.user.profile.profile_image)
-    return render(request, 'profile.html')
+
+    posts = Post.get_posts_for_user(request.user.id)
+    posts_count = len(posts)
+    return render(request, 'profile.html', {'posts': posts, 'posts_count': posts_count})
 
 
 

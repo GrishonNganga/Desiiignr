@@ -39,21 +39,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <!-- <div class="col mt-3">
-                                <button class="btn btn-success"><a href="/">Make Pitch</a></button>
-                            </div> -->
-                            <div class="col mt-3 mb-5">
-                                <button class="btn btn-danger"><a href="/">Logout</a></button>
+                            <div class="col mt-3">
+                                Followers 200   Following 1
                             </div>
+                            
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
         </div>
-        <!-- <h2 class="mt-5">Your Pitches</h2> -->
-      
+        <h2 class="mt-5">Your Posts</h2>
+        {% if posts_count > 0 %}
+        <div class="posts">
+            {% for post in posts %}
+            <div class="post mr-3">
+                <a href="/">
+                    <img src="{{ post.post_image.url }}" alt="">               
+                </a>
+                
+            </div>
+            {% endfor %}
+        </div>           
+        {% else %}
+        <div class="mt-5">
+            You do not have any posts.
+        </div>
+        {% endif %}
+        
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -31,3 +31,7 @@ class Post(models.Model):
     @classmethod
     def get_all_posts(cls):
         return Post.objects.all()
+
+    @classmethod
+    def get_posts_for_user(cls, id):
+        return list(Post.objects.filter(user = id))

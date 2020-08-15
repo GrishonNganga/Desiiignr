@@ -25,7 +25,7 @@
                             <span class="material-icons profile-icon">account_circle</span>
                             {% endif %}
                             {{post.user.username}} &nbsp;<span class="material-icons big-dot">fiber_manual_record</span>&nbsp;
-                            {% if post.user.username not in followers %} 
+                            {% if post.user.username not in followers and post.user != user %} 
                             <span class="follow{{post.user.id}} follow text-primary" onclick="follow(event)">Follow</span>  
                             <span class="following-hidden following-hidden{{post.user.id}}">Following</span>
                             <form action="" id="follow{{ post.user.id }}">
@@ -33,7 +33,8 @@
                                 <input type="hidden" id="user_follow" name="follow" value="{{ post.user.id }}">
 
                             </form>
-                            {% else %}
+                            
+                            {% elif post.user != user  %}
                                 <span class="following">Following</span>                
                             {% endif%}
                         </div>

@@ -71,6 +71,19 @@
                         
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        {% liked_by post.id as one_liker %}
+                        {% others post.id as howmanyothers %}
+
+                        {% if howmanyothers > 1 %}
+                        <p>Liked by {{one_liker }} and {{ howmanyothers }} others </p> 
+                        {% else %}
+                        <p>Liked by {{one_liker }} </p> 
+                        {% endif %}
+                        
+                    </div>
+                </div>
                 
             </div>
             {% endfor %}

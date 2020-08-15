@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model
 
-from .models import Profile, Post
+from .models import Profile, Post, Follower
 User = get_user_model()
 
 from .forms import RegisterUserForm, LoginUserForm
@@ -66,7 +67,13 @@ def loginPage(request):
 @login_required(login_url='/login')
 def index(request):
     posts = Post.get_all_posts()
-    return render(request, 'index.html', {'posts': posts})
+    followers = list(Follower.objects.filter(user = request.user))
+    pass_followers = []
+    for follower in followers:
+        pass_followers.append(follower.username)
+    print(pass_followers)
+
+    return render(request, 'index.html', {'posts': posts, 'followers': pass_followers})
 
 
 
@@ -75,11 +82,11 @@ def profile(request):
     if request.method == 'POST' and request.FILES.get('profile'):
         profile_image = request.FILES.get('profile')
         user = request.user
-        user.profile.profile_image = profile_image
-
+        profile = Profile(user=user, profile_image = profile_image)
+        profile.save()
+        user.profile = profile
         user.save()
-
-
+        
     posts = Post.get_posts_for_user(request.user.id)
     posts_count = len(posts)
     return render(request, 'profile.html', {'posts': posts, 'posts_count': posts_count})
@@ -111,3 +118,22 @@ def show_post(request, post_id):
     post = Post.objects.get(id = post_id)
     
     return render(request, 'post.html', {'post': post})
+
+
+@login_required(login_url='/login')
+def follow_request(request):
+    if request.method =='POST':
+        if request.POST.get('follow'):
+            user_id = int(request.POST.get('follow'))
+            if isinstance(user_id, int):
+                print(user_id)
+                user_to_follow = User.objects.get(id = user_id)
+                follow = Follower(username=user_to_follow.username)
+                follow.save()
+                follow.user.add(request.user)
+                data = {'success': 'Successfully followed the user'}
+                return JsonResponse(data)
+            else:
+                data = {'fail': 'Something wrong happened.'}
+                return JsonResponse(data)
+                

@@ -71,7 +71,7 @@ def index(request):
     pass_followers = []
     for follower in followers:
         pass_followers.append(follower.username)
-    print(pass_followers)
+
 
     return render(request, 'index.html', {'posts': posts, 'followers': pass_followers})
 
@@ -137,3 +137,21 @@ def follow_request(request):
                 data = {'fail': 'Something wrong happened.'}
                 return JsonResponse(data)
                 
+
+
+# @login_required(login_url='/login')
+# def like_post(request):
+#     if request.method =='POST':
+#         if request.POST.get('like'):
+#             user_id = int(request.POST.get('like'))
+#             if isinstance(user_id, int):
+#                 print(user_id)
+#                 post_to_like = Post.objects.get(id = post_id)
+#                 follow = Follower(username=user_to_follow.username)
+#                 follow.save()
+#                 follow.user.add(request.user)
+#                 data = {'success': 'Successfully followed the user'}
+#                 return JsonResponse(data)
+#             else:
+#                 data = {'fail': 'Something wrong happened.'}
+#                 return JsonResponse(data)

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load like %}
 
 {% block styles %}
 <!-- Styles stuff -->
@@ -54,7 +55,14 @@
                 </div>
                 <div class="row">
                     <div class="col engage">
+                        {% check_like post.id user.id as liked%}
+                        {% if liked %}
+                        <span class="material-icons fav liked">favorite</span>
+                        {% else %}
                         <span class="material-icons fav">favorite_border</span>
+                        {% endif %}
+                        
+                        
                         <span class="material-icons chat">chat_bubble_outline</span>
                     </div>
                 </div>

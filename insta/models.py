@@ -30,3 +30,7 @@ class Follower(models.Model):
     username = models.CharField(max_length=100)
     user = models.ManyToManyField(User)
 
+
+class Like(models.Model):
+    username = models.CharField(max_length=100)
+    post = models.ManyToManyField(Post)

@@ -53,7 +53,7 @@ a, a:hover {
     width: 100%;
     height: 400px;
 }
-.side-two, .following-hidden{
+.side-two, .following-hidden, .liked-hidden{
     display: none;
 }
 .small-pic img{
@@ -71,6 +71,12 @@ a, a:hover {
 .follow{
     font-weight: bold;
     cursor: pointer;
+}
+.fav{
+    cursor: pointer;
+}
+.like-input{
+    position: fixed;
 }
 @media screen and (min-width: 600px){
     .post{

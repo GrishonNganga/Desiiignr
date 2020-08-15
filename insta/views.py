@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model
 
-from .models import Profile, Post, Follower
+from .models import Profile, Post, Follower, Like
 User = get_user_model()
 
 from .forms import RegisterUserForm, LoginUserForm
@@ -139,19 +139,19 @@ def follow_request(request):
                 
 
 
-# @login_required(login_url='/login')
-# def like_post(request):
-#     if request.method =='POST':
-#         if request.POST.get('like'):
-#             user_id = int(request.POST.get('like'))
-#             if isinstance(user_id, int):
-#                 print(user_id)
-#                 post_to_like = Post.objects.get(id = post_id)
-#                 follow = Follower(username=user_to_follow.username)
-#                 follow.save()
-#                 follow.user.add(request.user)
-#                 data = {'success': 'Successfully followed the user'}
-#                 return JsonResponse(data)
-#             else:
-#                 data = {'fail': 'Something wrong happened.'}
-#                 return JsonResponse(data)
+@login_required(login_url='/login')
+def like_post(request):
+    if request.method =='POST':
+        if request.POST.get('like'):
+            post_id = int(request.POST.get('like'))
+            if isinstance(post_id, int):
+                print(post_id)
+                post_to_like = Post.objects.get(id = post_id)
+                like_post = Like(username=request.user.username)
+                like_post.save()
+                like_post.post.add(post_to_like)
+                data = {'success': 'Successfully liked the post'}
+                return JsonResponse(data)
+            else:
+                data = {'fail': 'Something wrong happened.'}
+                return JsonResponse(data)

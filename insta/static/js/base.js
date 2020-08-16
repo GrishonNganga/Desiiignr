@@ -13,6 +13,7 @@ function follow(user){
             'success':(data)=>{
                 if (data['success']){
                     $('.'+user_form).hide()
+                    $('.user'+user_id).remove()
                     $('.following-hidden'+user_id).show()
                 }else{
                 }
@@ -36,6 +37,8 @@ function followSuggested(user){
             'success':(data)=>{
                 if (data['success']){
                     $('.user'+user_id).remove()
+                    $('.liked-hidden'+post_id).show()
+                    $('.'+likeFormId).hide()
                 }else{
                 }
                 

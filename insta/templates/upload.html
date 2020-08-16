@@ -21,7 +21,7 @@
             <form action="/upload" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <span class="material-icons upload-btn" id="upload-btn">add_circle_outline</span>
-                <input type="textarea" name="description" id="description" class="form-control">
+                <input type="textarea" name="description" id="description" class="form-control" placeholder="Enter a description for your post.">
                 <button type="submit">Upload</button>
                 <input type="file" name="upload" id="upload">
             

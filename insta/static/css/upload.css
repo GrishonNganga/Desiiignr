@@ -1,5 +1,6 @@
 .upload-btn{
     font-size: 70px;
+    cursor: pointer;
 }
 
 .center-div{
@@ -8,7 +9,16 @@
     height: 100vh;
     align-items: center;
 }
+.center{
+    width: 60%;
+}
 
 #upload{
     display: none;
+}
+
+@media screen and (min-width: 600px){
+    .center{
+        width: 30%;
+    }
 }

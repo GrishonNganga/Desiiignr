@@ -24,5 +24,5 @@ urlpatterns = [
     url('', include('insta.urls') ), 
     url(r'^profile', include('insta.urls')),
     url(r'^upload', include('insta.urls')),
-    url(r'^post/(\d)/', include('insta.urls'))
+    url(r'^post/(\d)/', include('insta.urls')),
 ]

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate, get_user_model
+import json
 
-from .models import Profile, Post, Follower, Like
+from .models import Profile, Post, Follower, Like, Comment
 User = get_user_model()
 
 from .forms import RegisterUserForm, LoginUserForm
@@ -116,8 +117,9 @@ def upload_pic(request):
 @login_required(login_url='/login')
 def show_post(request, post_id):
     post = Post.objects.get(id = post_id)
-    
-    return render(request, 'post.html', {'post': post})
+    comments = list(Comment.objects.filter(post=post))
+    print(comments)
+    return render(request, 'post.html', {'post': post, 'comments': comments})
 
 
 @login_required(login_url='/login')
@@ -155,3 +157,40 @@ def like_post(request):
             else:
                 data = {'fail': 'Something wrong happened.'}
                 return JsonResponse(data)
+
+
+@login_required(login_url='/login')
+def make_comment(request):
+    if request.method =='POST':
+        if request.POST.get('comment'):
+            post_id = int(request.POST.get('post'))
+            comment = request.POST.get('comment')
+        elif request.POST.get('comment-lg'):
+            post_id = int(request.POST.get('post-lg'))
+            comment = request.POST.get('comment-lg')
+        else:
+            data = {'fail': 'Something wrong happened.'}
+            return JsonResponse(data)
+
+        if isinstance(post_id, int):
+            print(post_id)
+            print(comment)
+            post_to_comment = Post.objects.get(id = post_id)
+            comment_post = Comment(username=request.user.username, comment = comment)
+            comment_post.save()
+            comment_post.post.add(post_to_comment)
+            profile = Profile.objects.filter(user=request.user.id).exists()
+            if profile:
+                comment = {'user': request.user.username,'image': request.user.profile.profile_image.url, 'comment': comment}
+            else:
+                comment = {'user': request.user.username,'image': None, 'comment': comment}
+            data = {'success': 'Successfully liked the post', 'comment': comment}
+            return JsonResponse(data)
+        else:
+            data = {'fail': 'Something wrong happened.'}
+            return JsonResponse(data)
+
+
+
+
+

@@ -36,6 +36,9 @@ a, a:hover {
 .profile-icon{
     font-size: 35px;
 }
+.profile-default{
+    font-size: 40px;
+}
 
 .side-profile img{
     width: 50px;

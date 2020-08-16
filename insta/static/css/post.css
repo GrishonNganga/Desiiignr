@@ -47,6 +47,7 @@
         border-left: none;
         border-right: none;
     }
+    
     .engage-section{
         position: relative;
         width: 330px;
@@ -77,5 +78,10 @@
         margin: 0%;
         padding: 0%;
         font-weight: bold;
+    }
+    .comments-section-lg{
+        height: 330px;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
 }

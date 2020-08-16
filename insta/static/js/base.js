@@ -21,6 +21,28 @@ function follow(user){
         })
 }
 
+function followSuggested(user){
+    let classes = user.toElement.className
+    let user_form = classes.split(' ', 1)[0]
+    let user_id = user_form.substring(6)
+
+    let followForm = $('#'+user_form)
+
+        $.ajax({
+            'url': '/follow',
+            'type': 'POST',
+            'data': followForm.serialize(),
+            'datatype': 'json',
+            'success':(data)=>{
+                if (data['success']){
+                    $('.user'+user_id).remove()
+                }else{
+                }
+                
+            }
+        })
+}
+
 function like_post(like){
     let likeClasses = like.toElement.className
     let likeFormId = likeClasses.split(' ', 1)[0]

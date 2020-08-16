@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load like %}
-
+{% load follow %}
 {% block styles %}
 <!-- Styles stuff -->
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -104,31 +104,30 @@
             <div class="row">
                 <div class="col ml-2">
                     <span class="suggested">Suggested for you</span> 
+                    {% to_follow user.id as followthese %}
                 </div>
             </div>
-            <div class="row ml-3">
+            {% for followthis in followthese %}
+            <div class="row ml-3 user{{ followthis.user_id }}">
                 <div class="col">
                     <div class="profile-photo small-pic">
-                        <img src="{% static 'images/twitter.png' %}" alt="">
-                        Grishon Nganga
+                        {% if follwthis.profile != 'None' %}
+                        <img src="{{ followthis.profile }}" alt="">
+                        {% else %}
+                        <span class="material-icons profile-icon">account_circle</span>
+                        {% endif %}
+                        {{ followthis.username }}
                     </div>
                 </div>
                 <div class="col">
-                    <span class="follow">Follow</span>
+                    <form action="" id="follow{{ followthis.user_id }}">
+                        {% csrf_token %}
+                        <input type="hidden" id="user_follow" name="follow" value="{{ followthis.user_id }}">
+                    </form>
+                    <span class="follow{{ followthis.user_id }} follow text-primary" onclick="followSuggested(event)">Follow</span>
                 </div>
             </div>
-            <div class="row ml-3">
-                <div class="col">
-                    <div class="profile-photo small-pic">
-                        <img src="{% static 'images/twitter.png' %}" alt="">
-                        Gikima Grishon
-                    </div>
-                </div>
-                <div class="col">
-                    <span class="follow">Follow</span>
-                </div>
-            </div>
-
+            {% endfor %}
             </div>
         </div>
         

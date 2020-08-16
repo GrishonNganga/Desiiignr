@@ -16,6 +16,7 @@ a, a:hover {
 }
 .fav, .chat{
     margin-right: 10px;
+    cursor: pointer;
 }
 .liked{
     color: red;

@@ -1,4 +1,5 @@
 {% load static %}
+{% load like %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,19 +34,41 @@
         </div>  
         <div class="row">
             <div class="col engage">
-                <span class="material-icons fav">favorite_border</span>
-                <span class="material-icons chat message_bubble">chat_bubble_outline</span>
+                {% check_like post.id user.id as liked%}
+                        {% if liked %}
+                        <span class="material-icons fav liked  liked{{post.id}}" >favorite</span>
+                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
+                        {% else %}
+                        <span class="like{{post.id}} material-icons fav like" onclick="like_post(event)">favorite_border</span>
+                        <span class="material-icons fav liked liked-hidden liked-hidden{{post.id}}" >favorite</span>
+                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
+                        <form action="" id="like{{post.id}}">
+                            {% csrf_token %}
+                            <input type="hidden" name="like"  value="{{post.id}}" id="like-input">
+                        </form>
+                        {% endif %}
             </div>
         </div>
         <div class="row">
             <div class="col">
-                Liked by Karen Ngala and others 
+                {% liked_by post.id as one_liker %}
+                        {% others post.id as howmanyothers %}
+
+                        {% if howmanyothers > 1 %}
+                        <p>Liked by {{one_liker }} and {{ howmanyothers }} others </p> 
+                        {% else %}
+                        <p>Liked by {{one_liker }} </p> 
+                        {% endif %} 
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <textarea name="comment" id="comment" cols="5" class="form-control hidden"></textarea>
-                <button type="submit" class="btn btn-primary hidden post-btn">Post</button>
+                <form action="" id="form-comment">
+                    {% csrf_token %}
+                    <textarea name="comment-lg" id="comment" cols="5" class="form-control hidden"></textarea>
+                </form>
+                
+                <button type="submit" class="btn btn-primary hidden post-btn" onclick="comment('form-comment', '{{post.id}}')">Post</button>
             </div>
         </div>
     </div>
@@ -95,19 +118,41 @@
                     <div class="bottom">
                         <div class="row">
                             <div class="col engage">
-                                <span class="material-icons fav fav-lg">favorite_border</span>
-                                <span class="material-icons chat message_bubble-lg">chat_bubble_outline</span>
+                                {% check_like post.id user.id as liked%}
+                        {% if liked %}
+                        <span class="material-icons fav liked  liked{{post.id}}" >favorite</span>
+                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
+                        {% else %}
+                        <span class="like{{post.id}} material-icons fav like" onclick="like_post(event)">favorite_border</span>
+                        <span class="material-icons fav liked liked-hidden liked-hidden{{post.id}}" >favorite</span>
+                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
+                        <form action="" id="like{{post.id}}">
+                            {% csrf_token %}
+                            <input type="hidden" name="like"  value="{{post.id}}" id="like-input">
+                        </form>
+                        {% endif %}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>Liked by Karen Ngala and others </p> 
+                        {% liked_by post.id as one_liker %}
+                        {% others post.id as howmanyothers %}
+
+                        {% if howmanyothers > 1 %}
+                        <p>Liked by {{one_liker }} and {{ howmanyothers }} others </p> 
+                        {% else %}
+                        <p>Liked by {{one_liker }} </p> 
+                        {% endif %} 
                             </div>
                         </div>
                         <div class="row comment-box-lg">
                             <div class="col">
-                                <textarea name="comment" id="comment" cols="3" class="form-control textarea-bg" placeholder="Add a comment"></textarea>
-                                <span class="post-btn-lg text-primary">Post</span>
+                                <form action="" id="form-comment-lg">
+                                    {% csrf_token %}
+                                    <textarea name="comment-lg" id="comment" cols="3" class="form-control textarea-bg" placeholder="Add a comment"></textarea>
+                                </form>
+                                
+                                <span class="post-btn-lg text-primary" onclick="comment('form-comment-lg', '{{post.id}}')">Post</span>
                             </div>
                         </div>
                     </div>
@@ -119,11 +164,11 @@
         </div>
     </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="{% static 'js/post.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
 </body>
 
 {% block scripts %}

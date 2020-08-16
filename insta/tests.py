@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import os
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from .models import Post, Follower, Like, Profile
+from .models import Post, Follower, Like, Profile, Comment
 
 class Test_Profile(TestCase):
     def setUp(self):
@@ -28,10 +28,6 @@ class Test_Profile(TestCase):
     def test_profile_create(self):
         self.assertNotEqual(self.user.profile.profile_image, None )
         self.assertEqual(self.user.profile.profile_image.name, 'profiles/file.jpg')
-        
-
-      
-        
         
     def tearDown(self):
         directory_profiles = os.getcwd() + '\media\profiles'
@@ -104,3 +100,32 @@ class TestLike(TestCase):
         self.assertEqual(len(Like.objects.all()), 1)
         self.assertEqual(Like.objects.all()[0].username, 'kishy')
 
+    
+    def tearDown(self):
+        directory_posts = os.getcwd() + '\media\posts'
+        os.remove(directory_posts + '\\' + self.image_post.name)
+
+
+class TestComment(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username = 'kishy', email = 'kishy.gikish@gmail.com', password='123@Iiht')
+
+        self.image_post = SimpleUploadedFile("photo.jpg", b"file_content", content_type="image/jpg")
+        self.post = Post(user = self.user, post_image = self.image_post, post_description = 'Oluwa Burna' )
+        self.post.save()
+        self.user.post = self.post
+        self.user.save()
+        
+            
+    def test_create_like(self):
+        self.comment = Comment(username = self.user.username, comment= 'Wow that is a beautiful babe!')
+        self.comment.save()
+        self.comment.post.add(self.post)
+        self.assertEqual(len(Comment.objects.all()), 1)
+        self.assertEqual(Comment.objects.all()[0].username, 'kishy')
+        self.assertEqual(Comment.objects.all()[0].comment, 'Wow that is a beautiful babe!')
+
+
+    def tearDown(self):
+        directory_posts = os.getcwd() + '\media\posts'
+        os.remove(directory_posts + '\\' + self.image_post.name)

@@ -51,18 +51,18 @@
                             {{post.post_description}}
                             
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <div class="row">
                     <div class="col engage">
                         {% check_like post.id user.id as liked%}
                         {% if liked %}
                         <span class="material-icons fav liked  liked{{post.id}}" >favorite</span>
-                        <span class="material-icons chat">chat_bubble_outline</span>
+                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
                         {% else %}
                         <span class="like{{post.id}} material-icons fav like" onclick="like_post(event)">favorite_border</span>
                         <span class="material-icons fav liked liked-hidden liked-hidden{{post.id}}" >favorite</span>
-                        <span class="material-icons chat">chat_bubble_outline</span>
+                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
                         <form action="" id="like{{post.id}}">
                             {% csrf_token %}
                             <input type="hidden" name="like"  value="{{post.id}}" id="like-input">

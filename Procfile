@@ -1,1 +1,1 @@
-web: gunicorn Margatsni.wsgi
+web: gunicorn Desiiigner.wsgi

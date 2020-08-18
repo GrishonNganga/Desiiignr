@@ -9,7 +9,7 @@
 
 <div class="cover-div">
   <div class="image">
-    <img src="{% static 'images/cute_signup.jpg' %}" alt="">
+    <img src="{% static 'images/signup.png' %}" alt="">
   </div>
   <div class="cover">
         <div class="logo">
@@ -21,19 +21,15 @@
             {% csrf_token %}
               <div class="form-group">
                 {{ register_form.username }}
-              <!-- <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" autocomplete="email"> -->
               </div>
               <div class="form-group">
                 {{ register_form.email }}
-                <!-- <input type="text" class="form-control" id="f-name" placeholder="Full Names" autocomplete="name"> -->
               </div>
               <div class="form-group">
                 {{ register_form.password1 }}
-                <!-- <input type="text" class="form-control" id="username" placeholder="Username" autocomplete="username"> -->
               </div>
               <div class="form-group">
                 {{ register_form.password2 }}
-              <!-- <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="current-password"> -->
               </div>
               <button type="submit" class="btn btn-primary signup">Sign Up</button>
               <div class="or-div">
@@ -59,19 +55,15 @@
             {% csrf_token %}
               <div class="form-group">
                 {{ register_form.username }}
-              <!-- <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" autocomplete="email"> -->
               </div>
               <div class="form-group">
                 {{ register_form.email }}
-                <!-- <input type="text" class="form-control" id="f-name" placeholder="Full Names" autocomplete="name"> -->
               </div>
               <div class="form-group">
                 {{ register_form.password1 }}
-                <!-- <input type="text" class="form-control" id="username" placeholder="Username" autocomplete="username"> -->
               </div>
               <div class="form-group">
                 {{ register_form.password2 }}
-              <!-- <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="current-password"> -->
               </div>
               <button type="submit" class="btn btn-primary signup">Sign Up</button>
               <div class="or-div">

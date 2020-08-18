@@ -4,33 +4,26 @@
     height: 58px;
     background-color: white;
     position: fixed;
+    display: flex;
+    justify-content: center;
+    z-index: 100000;
     
 }
 .nav-img img{
     width: 125px;
     margin-top: 10px;
     margin-bottom: 10px;
-    
 }
 .nav-img{
     position: fixed;
     z-index: 1000;
+    justify-content: center;
    
 }
-.nav-right .row{
-    display: flex !important;
-    justify-content: flex-end !important;
+.image img{
     width: 100%;
-    
 }
-.nav-right{
-    font-size: 24px;
-    margin-top: 10px;
-    position: fixed;
-    width: 100%;   
-    z-index: 1000;
-    
-}
+
 .up-tad{
     margin-top: -5px;
 }
@@ -38,10 +31,7 @@
     .nav-img img{
         width: 125px;
     }
-    .nav{
-        padding-left: 200px;
-        padding-right: 100px;
-    }
+
     .nav-right{
         width: 65%;
     }

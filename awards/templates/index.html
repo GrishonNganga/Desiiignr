@@ -1,145 +1,163 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load like %}
-{% load follow %}
+<!-- {% load like %}
+{% load follow %} -->
 {% block styles %}
 <!-- Styles stuff -->
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
 {% endblock %}
-
-
-
 {% block content %}
-<!-- Content stuff -->
-<div class="container index">
-    <div class="row posts">
-        <div class="col-12 col-sm-7 posts-div">
-            {% for post in posts %}
-            <div class=" post card">
-                <div class="row">
-                    <div class="col">
-                        <div class="profile-photo">
-                            {% if post.user.profile.profile_image %}
-                            <img src="{{ post.user.profile.profile_image.url }}" alt="">
-                            {%else%}
-                            <span class="material-icons profile-icon">account_circle</span>
-                            {% endif %}
-                            {{post.user.username}} &nbsp;<span class="material-icons big-dot">fiber_manual_record</span>&nbsp;
-                            {% if post.user.username not in followers and post.user != user %} 
-                            <span class="follow{{post.user.id}} follow text-primary" onclick="follow(event)">Follow</span>  
-                            <span class="following-hidden following-hidden{{post.user.id}}">Following</span>
-                            <form action="" id="follow{{ post.user.id }}">
-                                {% csrf_token %}
-                                <input type="hidden" id="user_follow" name="follow" value="{{ post.user.id }}">
-
-                            </form>
-                            
-                            {% elif post.user != user  %}
-                                <span class="following">Following</span>                
-                            {% endif%}
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="post-img">
-                            
-                            <img src="{{ post.post_image.url }}" alt="">
-                            
-                            {{post.post_description}}
-                            
-                        </div>
-                    </div> 
-                </div>
-                <div class="row">
-                    <div class="col engage">
-                        {% check_like post.id user.id as liked%}
-                        {% if liked %}
-                        <span class="material-icons fav liked  liked{{post.id}}" >favorite</span>
-                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
-                        {% else %}
-                        <span class="like{{post.id}} material-icons fav like" onclick="like_post(event)">favorite_border</span>
-                        <span class="material-icons fav liked liked-hidden liked-hidden{{post.id}}" >favorite</span>
-                        <span class="material-icons chat chat{{post.id}}" onclick="location.href = 'post/{{post.id}}';">chat_bubble_outline</span>
-                        <form action="" id="like{{post.id}}">
-                            {% csrf_token %}
-                            <input type="hidden" name="like"  value="{{post.id}}" id="like-input">
-                        </form>
-                        {% endif %}
-                        
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {% liked_by post.id as one_liker %}
-                        {% others post.id as howmanyothers %}
-
-                        {% if howmanyothers > 1 %}
-                        <p>Liked by {{one_liker }} and {{ howmanyothers }} others </p> 
-                        {% else %}
-                        <p>Liked by {{one_liker }} </p> 
-                        {% endif %}
-                        
-                    </div>
-                </div>
+<div class="content">
+    <div class="items">
+        <div class="item">
+            <div class="image-section">
+                <a href="/post/id">
+                    <img src="{% static 'images/site.jpg' %}" alt="">
+                </a>
                 
             </div>
-            {% endfor %}
-    
-        <div class="col-12 col-sm-5 side-two">
-            <div class="row side">
-                <div class="col">
-                    <div class="profile-photo side-profile">
-                        {% if user.profile.profile_image %}
-                            <img src="{{ user.profile.profile_image.url }}" alt="">
-                            {%else%}
-                            <span class="material-icons profile-icon">account_circle</span>
-                            {% endif %}
-                        {{ user.username }}
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+                <div class="item-imgs">
+                    <div class="item-img">
+                        <img src="{% static 'images/twitter.png' %}" alt="">
+                    </div>
+                    <div class="item-img">
+                        <img src="{% static 'images/twitter.png' %}" alt="">
+                    </div>
+                    <div class="item-img">
+                        <img src="{% static 'images/twitter.png' %}" alt="">
+                    </div>
+                    <div class="item-img">
+                        <img src="{% static 'images/twitter.png' %}" alt="">
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col ml-2">
-                    <span class="suggested">Suggested for you</span> 
-                    {% to_follow user.id as followthese %}
-                </div>
-            </div>
-            {% for followthis in followthese %}
-            <div class="row ml-3 user{{ followthis.user_id }}">
-                <div class="col">
-                    <div class="profile-photo small-pic">
-                        {% if follwthis.profile != 'None' %}
-                        <img src="{{ followthis.profile }}" alt="">
-                        {% else %}
-                        <span class="material-icons profile-icon">account_circle</span>
-                        {% endif %}
-                        {{ followthis.username }}
-                    </div>
-                </div>
-                <div class="col">
-                    <form action="" id="follow{{ followthis.user_id }}">
-                        {% csrf_token %}
-                        <input type="hidden" id="user_follow" name="follow" value="{{ followthis.user_id }}">
-                    </form>
-                    <span class="follow{{ followthis.user_id }} follow text-primary" onclick="followSuggested(event)">Follow</span>
-                </div>
-            </div>
-            {% endfor %}
             </div>
         </div>
-        
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Shootz Website
+                </div>
+                <div class="">
+                    This is my cool description
+                </div>
+                <div class="">
+                    This many peeps liked
+                </div>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="image-section">
+                <img src="{% static 'images/site.jpg' %}" alt="">
+            </div>
+            <div class="description-section">
+                <div class="">
+                    Trial phase
+                </div>
+                <div class="">
+                    This many people voted
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 
-
-
 {% endblock %}
-
-
-
 {% block scripts %}
 <!-- Scripts stuff -->
 

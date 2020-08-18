@@ -26,9 +26,10 @@ class Post(models.Model):
         return list(Post.objects.filter(user = id))
 
 
-class Follower(models.Model):
+class Rate(models.Model):
     username = models.CharField(max_length=100)
     user = models.ManyToManyField(User)
+    score = models.CharField(max_length=3)
 
 
 class Like(models.Model):

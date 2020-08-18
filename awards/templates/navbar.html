@@ -8,43 +8,9 @@
 <div class="container-fluid nav">
     <div class="nav-img">
         <a href="/">
-            <img src="{% static 'images/margatsni.png' %}" alt="Logo">
+            <img src="{% static 'images/designr.png' %}" alt="Logo">
         </a>
         
     </div>
-    <div class="nav-right">
-        <div class="row">
-            <div class="col-1 col-sm-0">
-                <div class="home">
-                    <a href="/">
-                        <span class="material-icons">home</span>
-                    </a>
-                    
-                </div>
-            </div>
-            <div class="col-1 col-sm-0">
-                <div class="heart">
-                    <a href="/upload">
-                        <span class="material-icons">add_box</span>
-                    </a>
-                    
-                </div>
-            </div>
-            <div class="col-1 col-sm-0 mr-1">
-                <div class="profile">
-                    <div class="profile-photo small-pic up-tad">
-                        <a href="/profile">
-                            {% if user.profile.profile_image %}
-                            <img src="{{ user.profile.profile_image.url }}" alt="">
-                            {% else %}
-                            <span class="material-icons nav-right" id="upload-image">account_circle</span>
-                            {% endif %}
-                        </a>
-                        
-                        
-                    </div>
-                </div> 
-            </div>
-        </div>
-    </div>
+    
 </div>

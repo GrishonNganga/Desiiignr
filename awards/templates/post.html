@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href=" {% static 'css/post.css' %}">
     <link rel="stylesheet" href=" {% static 'css/index.css' %}">
     
@@ -16,163 +17,31 @@
 <body>
     {% include 'navbar.html' %}
 
-
-    <div class="screen-sm image container">
-        <div class="row image">
-            <div class="col">
-                <div class="profile-photo">
-                    {% if post.user.profile.profile_image %}
-                    <img src="{{ post.user.profile.profile_image.url }}" alt="">
-                    {%else%}
-                    <span class="material-icons profile-icon">account_circle</span>
-                    {% endif %}
-                    {{post.user.username}}
+    <div class="container">
+        <div class="image-section">
+            <img src="{% static 'images/site.png' %}" alt="">
+        </div>
+        <div class="description-section">
+            This is the description section
+        </div>
+        <div class="votees-section">
+            <div class="row">
+                <div class="col">
+                    <div class="profile-img">
+                        <img src="{% static 'images/site.jpg' %}" alt="">
+                    </div>
+                    <div class="name">
+                        Grishon Gikima
+                    </div>
+                    <div class="score">
+                        89%
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="">
-            <img src="{{ post.post_image.url }}" alt="">
-        </div>  
-        <div class="row">
-            <div class="col engage">
-                {% check_like post.id user.id as liked%}
-                        {% if liked %}
-                        <span class="material-icons fav liked  liked{{post.id}}" >favorite</span>
-                        <span class="material-icons chat message_bubble">chat_bubble_outline</span>
-                        {% else %}
-                        <span class="like{{post.id}} material-icons fav like" onclick="like_post(event)">favorite_border</span>
-                        <span class="material-icons fav liked liked-hidden liked-hidden{{post.id}}" >favorite</span>
-                        <span class="material-icons chat message_bubble-lg">chat_bubble_outline</span>
-                        <form action="" id="like{{post.id}}">
-                            {% csrf_token %}
-                            <input type="hidden" name="like"  value="{{post.id}}" id="like-input">
-                        </form>
-                        {% endif %}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                {% liked_by post.id as one_liker %}
-                        {% others post.id as howmanyothers %}
-
-                        {% if howmanyothers > 1 %}
-                        <p>Liked by {{one_liker }} and {{ howmanyothers }} others </p> 
-                        {% else %}
-                        <p>Liked by {{one_liker }} </p> 
-                        {% endif %} 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <form action="" id="form-comment">
-                    {% csrf_token %}
-                    <input type="hidden" name="post" value="{{ post.id }}">
-                    <textarea name="comment" id="comment" cols="5" class="form-control hidden"></textarea>
-                </form>
-                
-                <button type="submit" class="btn btn-primary hidden post-btn" onclick="comment('form-comment', '{{post.id}}')">Post</button>
             </div>
         </div>
     </div>
-    <div class="screen-bg">
-        <div class="padding-space"></div>
-        <div class="center-flex">
-            <div class="post-box">
-                <div class="image-org">
-                    <img src="{{ post.post_image.url }}" alt="">
-                </div>
-                <div class="engage-section">
-                    <div class="row section-2">
-                        <div class="col">
-                            <div class="profile-photo card">
-                                {% if post.user.profile.profile_image %}
-                                <img src="{{ post.user.profile.profile_image.url }}" alt="">
-                                {%else%}
-                                <span class="material-icons profile-icon">account_circle</span>
-                                {% endif %}
-                                {{post.user.username}}
-                            </div>
-                        </div>
-                    </div>
 
-                    
-                    <div class="comments-section-lg">
-                        {% for comment in comments %}
-                        {% get_pic comment.username as pic %}
-                        <div class="profile">
-                            <div class="profile-photo up-tad">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <a href="/profile">
-                                            
-                                            {% if pic != None %}
-                                            <img src="{{ pic }}" alt="">
-                                            {% else %}
-                                            <span class="material-icons profile-icon">account_circle</span>
-                                            {% endif %} 
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="col mt-3">
-                                        {{ comment.username }}  {{ comment.comment }}
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        {% endfor %}
-                    </div>
-                                
-                    <div class="bottom">
-                        <div class="row">
-                            <div class="col engage">
-                                {% check_like post.id user.id as liked%}
-                        {% if liked %}
-                        <span class="material-icons fav liked  liked{{post.id}}" >favorite</span>
-                        <span class="material-icons chat message_bubble-lg">chat_bubble_outline</span>
-                        {% else %}
-                        <span class="like{{post.id}} material-icons fav like" onclick="like_post(event)">favorite_border</span>
-                        <span class="material-icons fav liked liked-hidden liked-hidden{{post.id}}" >favorite</span>
-                        <span class="material-icons chat message_bubble-lg">chat_bubble_outline</span>
-                        <form action="" id="like{{post.id}}">
-                            {% csrf_token %}
-                            <input type="hidden" name="like"  value="{{post.id}}" id="like-input">
-                        </form>
-                        {% endif %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                        {% liked_by post.id as one_liker %}
-                        {% others post.id as howmanyothers %}
-
-                        {% if howmanyothers > 1 %}
-                        <p>Liked by {{one_liker }} and {{ howmanyothers }} others </p> 
-                        {% else %}
-                        <p>Liked by {{one_liker }} </p> 
-                        {% endif %} 
-                            </div>
-                        </div>
-                        <div class="row comment-box-lg">
-                            <div class="col">
-                                <form action="" id="form-comment-lg">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="post-lg" value="{{ post.id }}">
-                                    <textarea name="comment-lg" id="comment" cols="3" class="form-control textarea-bg" placeholder="Add a comment"></textarea>
-                                </form>
-                                
-                                <span class="post-btn-lg text-primary" onclick="comment('form-comment-lg', '{{post.id}}')">Post</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

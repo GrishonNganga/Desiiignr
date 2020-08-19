@@ -1,4 +1,4 @@
-# Margatsni
+# Desiiigner
 
 Instagram. Only better...-ish.
 
@@ -18,8 +18,8 @@ A user can:
 * Postgresql -> See https://www.postgresql.org/download/ to download for your platform of choice.
 
 ### Setup
-* Clone the repo `git clone https://github.com/GrishonNganga/Margatsni.git`
-* Move into the directory `cd Margatsni`
+* Clone the repo `git clone https://github.com/GrishonNganga/Desiiigner.git`
+* Move into the directory `cd Desiiigner`
 * Create a virtual environment `python -m venv virtual`
 * Install all dependencies with `pip install -r requirements.txt`
 * Create `.env` file and add your environment variables.
@@ -50,7 +50,7 @@ There are no known bugs atm. Get in touch if you discover any.
 Reach out to me over email grishon.nganga01@gmail.com
 ### MIT License
 
-Copyright (c) 2020 Margatsni
+Copyright (c) 2020 Desiiigner
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

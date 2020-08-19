@@ -20,6 +20,9 @@
     justify-content: center;
    
 }
+.right{
+    display: none;
+}
 .image img{
     width: 100%;
 }
@@ -27,12 +30,42 @@
 .up-tad{
     margin-top: -5px;
 }
+
 @media screen and (min-width: 600px){
+    .right{
+        display: block;
+    }
+    .right{
+        position: fixed;
+        right: 50px;
+        top: 18px;
+        font-size: 18px;
+    }
+    .action{
+        padding: 10px;
+        margin-right: 15px;
+        cursor: pointer;
+        
+    }
+    .submission{
+        background-color: #00B0FF;
+        color: white;
+    }
+    .action:hover{
+        background-color: #46A7FF;
+        color: white;
+    }
+    .submission:hover{
+        background-color: #46A7FF;
+    }
     .nav-img img{
         width: 125px;
     }
 
     .nav-right{
         width: 65%;
+    }
+    .prof{
+        cursor: pointer;
     }
 }

@@ -4,7 +4,7 @@ import random
 
 User = get_user_model()
 
-from ..models import Like, Post
+from ..models import Rate, Post
 
 register = template.Library()
 

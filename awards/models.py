@@ -9,14 +9,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(upload_to = 'profiles/')
 
-
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_image = models.ImageField(upload_to = 'posts/')
     post_description = models.CharField(max_length=200)
     upload_date = models.DateField(auto_now_add=True)
 
-   
     @classmethod
     def get_all_posts(cls):
         return Post.objects.all()
@@ -25,16 +23,12 @@ class Post(models.Model):
     def get_posts_for_user(cls, id):
         return list(Post.objects.filter(user = id))
 
-
 class Rate(models.Model):
     username = models.CharField(max_length=100)
-    user = models.ManyToManyField(User)
-    score = models.CharField(max_length=3)
-
-
-class Like(models.Model):
-    username = models.CharField(max_length=100)
     post = models.ManyToManyField(Post)
+    design = models.CharField(max_length=2)
+    usability = models.CharField(max_length=2)
+    content = models.CharField(max_length=2)
 
 
 class Comment(models.Model):

@@ -1,6 +1,4 @@
 {% load static %}
-{% load like %}
-{% load pic %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,36 +7,53 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href=" {% static 'css/post.css' %}">
     <link rel="stylesheet" href=" {% static 'css/index.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/post.css' %}">
+    
     
     <title>Margatsni</title>
 </head>
 <body>
     {% include 'navbar.html' %}
 
-    <div class="container">
+    <div class="content">
         <div class="image-section">
-            <img src="{% static 'images/site.png' %}" alt="">
+            <img src="{% static 'images/site.jpg' %}" alt="">
         </div>
-        <div class="description-section">
-            This is the description section
-        </div>
-        <div class="votees-section">
-            <div class="row">
-                <div class="col">
-                    <div class="profile-img">
-                        <img src="{% static 'images/site.jpg' %}" alt="">
-                    </div>
-                    <div class="name">
-                        Grishon Gikima
-                    </div>
-                    <div class="score">
-                        89%
-                    </div>
-                </div>
+    </div>
+    <div class="vote-section">
+        <div class="overall-score-section mb-5">
+            <span class="title">Overall Score</span>
+            <div class="overall-score">
+                {{ rating }}%
             </div>
         </div>
+        <form action="/vote/{{post.id}}/" method="POST">
+            {% csrf_token %}
+            <div class="section-one">
+                <span class="title">Design</span>
+                <div class="vote-div">
+                    <input type="number" name="design" id="number" class="form-control vote-input">/10
+                </div>
+            </div>  
+            <div class="section-two">
+                <span class="title">Usability</span>
+                <div class="vote-div">
+                    <input type="number" name="usability" id="number" class="form-control vote-input"><label for="design">/10</label>
+                </div>
+            </div>
+            <div class="section-three">
+                <span class="title">Content</span>
+                <div class="vote-div">
+                    <input type="number" name="content" id="number" class="form-control vote-input">/10
+                </div>
+            </div>
+            
+            <div class="mt-4">   
+                <button class="btn btn-primary" type="submit">Vote</button>
+            </div>
+            
+        </form>
     </div>
 
     

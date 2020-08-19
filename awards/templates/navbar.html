@@ -12,5 +12,24 @@
         </a>
         
     </div>
-    
+    <div class="right">
+        <div class="actions">
+            {% if not user.is_authenticated %}
+            <a href="/login">
+                <span class="action signup">SIGNUP/SIGN UP</span>
+            </a>            
+            {% endif %}
+            <a href="/upload">
+                <span class="action submission">MAKE SUBMISSION</span>
+            </a>
+            {% if user.is_authenticated %}
+            <span class="material-icons prof" onclick="window.location.href = '/profile';">account_box</span>
+
+            
+            {% endif %}
+            
+            
+        </div>
+        
+    </div>
 </div>

@@ -1,87 +1,37 @@
-.image{
-    padding-top: 40px;
+.content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
-.image img{
+.image-section{
+    display: flex;
+    justify-content: center;
     width: 100%;
 }
-.hidden{
-    display: none;
+.image-section img{
+    width: 100%;
 }
-.screen-sm{
-    display: block;
+.title{
+    font-size: 24px;
+    font-weight: bold;
 }
-.screen-bg{
-    display: none;
+.vote-div{
+    display: flex;
 }
-
+.vote-input{
+    width: 60px;
+}
 @media screen and (min-width: 600px){
-    .screen-sm{
-        display: none;
+    .content{
+        padding-left: 0%;
     }
-    .screen-bg{
-        display: block;
+    .image-section img{
+        width: 900px;
+        height: 600px;
     }
-    .center-flex{
-        display: flex;
-        justify-content: center;
-    }
-    .post-box{
-        border: 1px solid lightgray;
-        display: flex;
-        flex-direction: row;
-}
-    .padding-space{
-        padding-top: 80px;
-        height: 2px;
-    }
-    .image-org {
-        padding-top: 0%;
-    }
-    .image-org img{
-        width: 500px;
-        height: 550px;
-    }
-    .profile-photo{
-        display: block;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-    }
-    
-    .engage-section{
-        position: relative;
-        width: 330px;
-    }
-    .bottom{
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-    }
-    .bottom .row{
-        width: 100%;
-    }
-    .textarea-bg{
-        border: none;
-        width: 100%;
-        background-color: transparent;
-        resize: none;
-    }
-    .textarea-bg:focus{
-        box-shadow: none;
-        background-color: transparent;
-        
-    }
-    .post-btn-lg{
-        position: absolute;
-        bottom: 20px;
-        right: -8px;
-        margin: 0%;
-        padding: 0%;
-        font-weight: bold;
-    }
-    .comments-section-lg{
-        height: 330px;
-        overflow-x: hidden;
-        overflow-y: scroll;
+    .vote-section{
+        margin-left: 300px;
+        margin-top: 30px;
     }
 }

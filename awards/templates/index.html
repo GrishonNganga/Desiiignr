@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-<!-- {% load like %}
-{% load follow %} -->
 {% block styles %}
 <!-- Styles stuff -->
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -9,19 +7,20 @@
 {% block content %}
 <div class="content">
     <div class="items">
+        {% for post in posts %}
         <div class="item">
             <div class="image-section">
-                <a href="/post/id">
+                <a href="/post/{{post.id}}">
                     <img src="{% static 'images/site.jpg' %}" alt="">
                 </a>
                 
             </div>
             <div class="description-section">
-                <div class="">
-                    Trial phase
+                <div class=" mb-3">
+                    {{ post.post_description }}
                 </div>
                 <div class="">
-                    This many people voted
+                    
                 </div>
                 <div class="item-imgs">
                     <div class="item-img">
@@ -39,121 +38,8 @@
                 </div>
             </div>
         </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Shootz Website
-                </div>
-                <div class="">
-                    This is my cool description
-                </div>
-                <div class="">
-                    This many peeps liked
-                </div>
-
-            </div>
-        </div>
-        <div class="item">
-            <div class="image-section">
-                <img src="{% static 'images/site.jpg' %}" alt="">
-            </div>
-            <div class="description-section">
-                <div class="">
-                    Trial phase
-                </div>
-                <div class="">
-                    This many people voted
-                </div>
-
-            </div>
-        </div>
+        {% endfor %}
+        
     </div>
 </div>
 

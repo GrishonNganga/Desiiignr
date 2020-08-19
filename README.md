@@ -1,16 +1,15 @@
 # Desiiigner
 
-Instagram. Only better...-ish.
+Platform for web artisans can submit their projects and other like minded fellows can rate and give them feedback on the same.
 
 #### By **Grishon Gikima**
 
 ## Description
 
 A user can:
-* View posts from other users.
-* Like and comment on people's posts.
-* Upload your their own posts
-* Follow their favorite creaters.
+* View sites submitted by other users.
+* Rate other people's projects (Based on 1. Design 2.Usability 3. Content).
+* Submit their own projects.
 
 ## Setup/Installation Requirements
 
